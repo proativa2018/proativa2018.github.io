@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <!-- Canonical link to help search engines -->
+  <link rel="canonical" href="/ed/documentation/"/>
+
+  <!-- Basic meta elements -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+
+  <!--   Dublin Core metadata for Zotero -->  
+  <meta name="DC.title" content="Documentation" />
+  <meta name="DC.creator" content="Alex Gil" />
+  <meta name="DC.contributor" content="" />
+  <meta name="DC.date" content="" />
+  <meta name="DC.rights" content="" />
+  <meta name="DC.source" content="Ed." />
+  
+    <!-- Open Graph metadata -->
+
+    
+    <meta property="og:title" content="Documentation"/>
+    <meta property="og:description" content="An Ed edition">
+    <meta property="fb:admins" content="elotroalex"/>
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://localhost:4000/ed/documentation/"/>
+    <meta property="fb:app_id" content="589495744558280"/>
+    <meta property="og:image" content="http://localhost:4000/ed/assets/open-graph-logo.png"/>
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
+    
+   
+  <title>
+    
+      Documentation
+    
+  </title>
+
+  <!-- CSS link -->
+  <link rel="stylesheet" href="/ed/assets/css/style.css"/>
+ 
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/ed/assets/apple-touch-icon-precomposed.png"/>
+  <link rel="shortcut icon" href="/ed/assets/favicon.ico"/>
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/ed/atom.xml"/>
+</head>
+
+
+  <body class="theme-base-">
+
+    <!-- This if statement decides which sidebar to use -->
+    
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Ed is a Jekyll theme designed for textual editors based on minimal computing principles, and focused on legibility and flexibility.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/ed/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/ed/about/">About</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/ed/credits/">Credits</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item active" href="/ed/documentation/">Documentation</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/ed/search/">Search</a>
+        
+      
+    
+
+    <!-- The code below is used for manually entered links  -->
+
+    <span style='cursor:pointer;' onclick="javascript:var hypothesis = document.createElement('script');
+      hypothesis.setAttribute('src','https://hypothes.is/embed.js');
+      document.head.appendChild(hypothesis);"><a class="sidebar-nav-item">Annotate me</a></span>
+
+<!--     <a class="sidebar-nav-item" href="https://via.hypothes.is/http://localhost:4000/ed/documentation//" data-proofer-ignore>Annotate me</a> -->
+<!--  -->
+    <!-- <script src="https://hypothes.is/embed.js" async></script> -->
+
+    <a class="sidebar-nav-item" href="https://github.com/minicomp/ed" target="_blank">GitHub project</a>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>Currently v1.0 Distributed with an MIT license.</p>
+  </div>
+</div>
+
+    
+
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/ed/" title="Home">Ed.</a>
+            <br><small>a jekyll theme for minimal editions</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content" id="main">
+        <div class="page">
+  <h1 class="page-title">Documentation</h1>
+  <head>
+	<script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+</head>
+
+<h2 class="no_toc" id="contents">Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a></li>
+  <li><a href="#pré-requisitos" id="markdown-toc-pré-requisitos">Pré-requisitos</a></li>
+  <li><a href="#utilizando-o-coqide" id="markdown-toc-utilizando-o-coqide">Utilizando o CoqIDE</a></li>
+  <li><a href="#regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land" id="markdown-toc-regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land">Regras de Inferência para Conjunção: Introdução e Eliminação do <script type="math/tex">\land</script></a></li>
+</ul>
+
+<hr />
+<h2 id="introdução">Introdução</h2>
+
+<p>Este projeto visa proporcionar uma facilidade para os estudantes da disciplina de Matemática Discreta I e entusiastas da área de lógicas de predicados e lógica proposicional.</p>
+
+<p>É comum cometermos erros na construção de determinadas provas matemáticas, principalmente na hora de verificar se uma prova está certa ao final do exercício.</p>
+
+<p>Neste material abordaremos a construção das provas formais, e a sua verificação através da ferramenta Coq Proof Assistant.</p>
+
+<h2 id="pré-requisitos">Pré-requisitos</h2>
+
+<p>Para utilizar a ferramenta do Coq, é necessário sua instalação e configuração (é bem simples). As versões para plataformas Windows e Mac/OS podem ser encontradas neste <a href="https://github.com/coq/coq/releases/tag/V8.8.1">link</a>.</p>
+
+<p>Em plataformas Windows opte pelo arquivo de extensão EXE referente à arquitetura da sua máquina (x64/x86). Em plataformas Mac/OS, baixe o arquivo de extensão DMG e siga os passos da instalação.</p>
+
+<p>Para plataformas Ubuntu/Debian ,a instalação da versão mais atualiazada pode ser feita via terminal, da forma:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>coq coqide
+</code></pre></div></div>
+
+<p>Para verificar se a versão mais atualizada está instalada, utilize:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>coqc <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p>Caso opte pelo arquivo compactado de formato TAR.GZ, disponível na <a href="https://github.com/coq/coq/releases/tag/V8.8.1">página</a>, descompacte-o utilizando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-xvzf</span> coa-8.8.1.tar.gz
+</code></pre></div></div>
+
+<p>E finalmente, caso queira obter a versão do repositório git e se tornar um contribuidor, execute o camando abaixo em uma pasta vazia do seu computador:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/coq/coq.git
+</code></pre></div></div>
+
+<p>Desta forma, você consegue o código-fonte do CoqIDE para editar, testar e reportar bugs para a comunidade para torná-lo uma ferramenta melhor!</p>
+
+<h2 id="utilizando-o-coqide">Utilizando o CoqIDE</h2>
+
+<p>O básico para a criação de provas formais na ferramenta Coq é a declaração das variáveis que vão corresponder às proposições.</p>
+
+<p>Cada proposição é declarada como uma váriavel do tipo <code class="highlighter-rouge">Prop</code>. Utiliza-se a palavra chave <code class="highlighter-rouge">Variables</code> para declarar as variáveis.</p>
+
+<p>Segue um exemplo da criação de três variáveis do tipo proposição:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="k">Variables</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="no">C</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Outro aspecto importante para a criação das provas formais é a criação dos lemas.</p>
+
+<p>Um lema, que é identificados pelas palavra chave <code class="highlighter-rouge">Lemma</code>, possui quase sempre a mesma estrutura:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="k">Lemma</span><span class="w"> </span><span class="o">&lt;</span><span class="no">nome_do_lema</span><span class="o">&gt;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="no">proposicoes</span><span class="o">&gt;</span><span class="w">
+	</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+		</span><span class="o">&lt;</span><span class="no">corpo_da_funcao</span><span class="o">&gt;</span><span class="w">
+	</span><span class="k">Qed</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Onde ‘nome_do_lema’ corresponde a um nome dado para o lema, ‘proposicoes’ corresponde à estrutura das proposições que se deseja provar e o ‘corpo_da_funcao’ que é onde as regras de inferências serão aplicadas.</p>
+
+<p>Veja o seguinte exemplo de prova formal:</p>
+
+<script type="math/tex; mode=display">(P \land Q)\:\:\:T</script>
+
+<p>Esta estrutura de prova, no CoqIDE, corresponde ao seguinte trecho de código:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="k">Lemma</span><span class="w"> </span><span class="no">lema1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="no">T</span><span class="w">
+	</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+		</span><span class="o">&lt;</span><span class="no">regras</span><span class="w"> </span><span class="no">de</span><span class="w"> </span><span class="no">inferencia</span><span class="w"> </span><span class="no">para</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">resolucao</span><span class="w"> </span><span class="no">da</span><span class="w"> </span><span class="no">prova</span><span class="o">&gt;</span><span class="w">
+	</span><span class="k">Qed</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land">Regras de Inferência para Conjunção: Introdução e Eliminação do <script type="math/tex">\land</script></h2>
+
+<p>A regra da introdução da conjunção, simbolizada por {<script type="math/tex">\land I</script>}, diz que dada duas premissas verdadeiras, pode concluir-se a conjunção dessas premissas, dada por <script type="math/tex">P \land Q</script> ou <script type="math/tex">Q \land P</script>. Escreve-se da forma:</p>
+
+<script type="math/tex; mode=display">\dfrac{P\:\:\:Q}{P \land Q} \tiny{\land I}</script>
+
+<p>A regra da eliminação da conjunção, também conhecida por regra da simplificação, é simbolizada por {<script type="math/tex">\land E</script>}. A partir desta regra, pode-se concluir <script type="math/tex">P\:\:\:Q</script> de <script type="math/tex">P \land Q</script>. Escreve-se da forma:</p>
+
+<script type="math/tex; mode=display">\dfrac{P \land Q}{P\:\:\:Q} \tiny{\land E}</script>
+
+<p>Exemplo de aplicação:</p>
+
+<script type="math/tex; mode=display">P \land Q \land T</script>
+
+<p>A premissa pode ser declarada no coqIDE como:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="k">Lemma</span><span class="w"> </span><span class="no">premissa</span><span class="w"> </span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
+	</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+
+	</span><span class="k">Qed</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Para provarmos a premissa acima, primeiro temos de “quebra-lá” em duas hipóteses. Para isso, podemos chamar a função <code class="highlighter-rouge">elim_e H.</code> no coqIDE, onde H é a nossa hipótese passada como parâmetro na função de eliminação do <script type="math/tex">\land</script>. Então, a primeira parte da prova ficaria:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="k">Lemma</span><span class="w"> </span><span class="no">premissa</span><span class="w"> </span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
+	</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+		</span><span class="no">elim_e</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
+	</span><span class="k">Qed</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>O resultado “parcial” da prova, mostrado no console do coqIDE (canto superior direito) ficaria:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="mi">1</span><span class="w"> </span><span class="no">subgoal</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">)</span><span class="w">
+</span><span class="no">A</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Logo, agora existem duas hipóteses, oriundas da “quebra” da premissa original: a hipótese <code class="highlighter-rouge">H0: A</code> e a hipótese <code class="highlighter-rouge">H1: B /\ C</code>.</p>
+
+<p>Agora, partimos primeiro para a hipóstese <code class="highlighter-rouge">H0: A</code>. Esta premissa pode ser provada utilizando a introdução do <script type="math/tex">\land</script>. O método na bilbioteca referente a esta técnica é o <code class="highlighter-rouge">intro_e.</code>. Portanto, a prova parcial e seu resultado ficariam da forma:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="k">Lemma</span><span class="w"> </span><span class="no">premissa</span><span class="w"> </span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
+	</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+		</span><span class="no">elim_e</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
+		</span><span class="no">intro_e</span><span class="pi">.</span><span class="w">
+	</span><span class="k">Qed</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="mi">2</span><span class="w"> </span><span class="no">subgoals</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span><span class="w">
+</span><span class="no">A</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span><span class="w">
+</span><span class="no">B</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Com a nova premissa, a regra de <script type="math/tex">/small{id}</script> pode ser utilizada para provar <script type="math/tex">A</script>, ou seja, a variável <code class="highlighter-rouge">H0</code> pode agora ser provada para o valor final <code class="highlighter-rouge">true</code>.</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="k">Lemma</span><span class="w"> </span><span class="no">premissa</span><span class="w"> </span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
+	</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+		</span><span class="no">elim_e</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
+		</span><span class="no">intro_e</span><span class="pi">.</span><span class="w">
+		</span><span class="no">id_H0</span><span class="pi">.</span><span class="w">
+	</span><span class="k">Qed</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Tendo como sub-resultados:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="mi">1</span><span class="w"> </span><span class="no">subgoal</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">)</span><span class="w">
+</span><span class="no">B</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Como <script type="math/tex">A</script> não precisa mais ser provado, partiremos para a expressão <script type="math/tex">B \land C</script>. A mesma sequência de comandos que foi usada n prova anterior pode ser usada agora também para provar <script type="math/tex">B \land C</script>, porém, agora utilizaremos a variável de hipótese<code class="highlighter-rouge">H1</code>. Ficaria da forma:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="k">Lemma</span><span class="w"> </span><span class="no">premissa</span><span class="w"> </span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
+	</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+		</span><span class="no">elim_e</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
+		</span><span class="no">intro_e</span><span class="pi">.</span><span class="w">
+		</span><span class="no">id_H0</span><span class="pi">.</span><span class="w">
+		</span><span class="no">elim_e</span><span class="w"> </span><span class="no">H1</span><span class="pi">.</span><span class="w">
+		</span><span class="no">intro_e</span><span class="pi">.</span><span class="w">
+		</span><span class="no">id</span><span class="w"> </span><span class="no">H1</span><span class="pi">.</span><span class="w">
+		</span><span class="no">id</span><span class="w"> </span><span class="no">H3</span><span class="pi">.</span><span class="w">
+	</span><span class="k">Qed</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Perceba que quando utilizamos o comando <code class="highlighter-rouge">elim_e H1</code>, duas novas variáveis de hipótese aparecem (H2 e H3), assim como no comando <code class="highlighter-rouge">elim_e H.</code>. E como resultado, a mensagem de que a prova foi finalizada e todas as vari´aveis de hipótese foram tratadas:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="no">No</span><span class="w"> </span><span class="no">more</span><span class="w"> </span><span class="no">subgoals</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+
+    // Highlight search Query
+    var url = window.location.href;
+      if (url.lastIndexOf("?q=") > 0) {
+        // get the index of the parameter, add three (to account for length)
+        var stringloc = url.lastIndexOf("?q=") + 3;
+        // get the substring (query) and decode
+        var searchquery = decodeURIComponent(url.substr(stringloc));
+        // regex matches at beginning of line, end of line or word boundary, useful for poetry
+        var regex = new RegExp("(?:^|\\b)(" + searchquery + ")(?:$|\\b)", "gim");
+        // get, add mark and then set content
+        var content = document.getElementById("main").innerHTML;
+        document.getElementById("main").innerHTML = content.replace(regex, "<mark>$1</mark>");
+      }
+
+    // Toggle sidebar  
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+    <!-- Facebook SDK for JavaScript -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '589495744558280',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+  </body>
+</html>
