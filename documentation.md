@@ -83,7 +83,7 @@ Onde 'nome_do_lema' corresponde a um nome dado para o lema, 'proposicoes' corres
 
 Veja o seguinte exemplo de prova formal:
 
-$$(P \land Q)\:\:\:T$$
+$$P \land Q \land T$$
 
 Esta estrutura de prova, no CoqIDE, corresponde ao seguinte trecho de código:
 
@@ -202,3 +202,6 @@ Perceba que quando utilizamos o comando ```elim_e H1```, duas novas variáveis d
 ```coq
 	No more subgoals.
 ```
+
+## Regras de inferência para implicação
+

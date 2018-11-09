@@ -126,7 +126,7 @@ function doSearch() {
   //Loop through, match, and add results
   for (var item in result) {
     var ref = result[item].ref;
-    var searchitem = '<div class="result"><p><a href="/ed'+store[ref].link+'?q='+query+'">'+store[ref].title+'</a></p></div>';
+    var searchitem = '<div class="result"><p><a href="/'+store[ref].link+'?q='+query+'">'+store[ref].title+'</a></p></div>';
     resultdiv.append(searchitem);
   }
 }
