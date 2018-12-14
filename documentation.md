@@ -205,3 +205,101 @@ Perceba que quando utilizamos o comando ```elim_e H1```, duas novas variáveis d
 
 ## Regras de inferência para implicação
 
+A regra de eliminação da implicação, também conhecida como $$\textit{Modus Ponens}$$, consiste na resolução de implicações lógicas. Veremos como resolve-lás com o Coq, através de um exemplo. 
+
+Suponha a seguinte proposição:
+
+$$\dfrac{(A \implies B) \land (B \implies C}{A \implies C} \tiny{\implies E}$$
+
+O primeiro passo para "dividir" a conclusão da prova, é utilizar a introdução da implicação:
+
+```coq
+	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Proof.
+  intro_implicacao.
+```
+
+O resultado do uso da função de introdução da implicação na conclusão nos dá o seguinte resultado:
+
+```coq
+	1 subgoal
+H : A -> B
+H1 : B -> C
+H0 : A
+______________________________________(1/1)
+C
+
+```
+
+Logo, uma nova hipótese $$H0$$ contendo o valor $$A$$ é criada pelo Coq. O próximo passo é fazer uma prova "intermediária" para $$B$$ utilizando o comando ```assert``` da forma:
+
+```coq
+	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Proof.
+  intro_implicacao.
+  assert B.
+```
+
+A partir da hipótese $$H$$ contendo o valor $$A \implies B$$ e da hipótese $$H0$$ contendo o valor $$A$$, podemos inferir que $$A \implies B$$ é verdade utilizando o comando ```elim_implicacao H H0```. Veja a sequência para o exemplo:
+
+```coq
+	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Proof.
+  intro_implicacao.
+  assert B.
+  elim_implicacao H H0.
+```
+
+```coq
+	H : A -> B
+H1 : B -> C
+H0 : A
+H2 : B
+______________________________________(1/2)
+B
+______________________________________(2/2)
+C
+```
+
+Para provarmos $$B$$ a partir de $$B$$, utilizamos o comando ```id H2```.
+
+```coq
+	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Proof.
+  intro_implicacao.
+  assert B.
+  elim_implicacao H H0.
+  id H2.
+```
+
+E o resultado:
+
+```coq
+	1 subgoal
+H : A -> B
+H1 : B -> C
+H0 : A
+H2 : B
+______________________________________(1/1)
+C
+```
+
+Logo, com o novo conjunto de hipóteses adquirido, conseguimos provar $$C$$ com certa facilidade. Basta utilizar o mesmo comando utilizado anteriormente para eliminação da implicação. O exemplo fica da forma:
+
+```coq
+	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Proof.
+  intro_implicacao.
+  assert B.
+  elim_implicacao H H0.
+  id H2.
+  elim_implicacao H1 H2.
+  id H3.
+Admitted.
+```
+
+E o resultado:
+
+```coq
+	No more subgoals.
+```
