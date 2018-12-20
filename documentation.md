@@ -462,6 +462,86 @@ No more subgoals.
 
 ## Regras de inferência para a Bi-implicação: introdução e eliminação do $$\iff$$.
 
+As regras da bi-implicação ou bi-condicional serão simbolizadas por $$\iff$$, de forma que, $$A \iff B$$ é equivalente a $$A \implies B \land B \implies A$$. Ou seja, ambos os lados da premissa são verdadeiros, $$A$$ ou $$B$$ forem verdadeiros, e ambos são falsos caso $$A$$ ou $$B$$ sejam falsos. Considere o exemplo de prova a seguir:
+
+$$\dfrac{B \iff C}{C \iff B}$$
+
+Veja como fica este exemplo no CoqIDE:
+
+```coq
+Lemma sex_teste(H: B <-> C): C <-> B.
+Proof.
+  
+Admitted.
+```
+
+Neste exemplo, a priori, possuímos uma hipótese $$H$$ contendo os valor $$B \iff C$$. Queremos provar a partir destas, o resultado $$C \iff B$$. Podemos utilizar o comando de introdução da bi-implicação, para separa-lá em duas implicações. Veja:
+
+```coq
+Lemma sex_teste (H: B <-> C): C <-> B.
+Proof.
+  intro_bicondicional.
+  
+Admitted.
+```
+
+Que gera:
+
+```coq
+2 subgoals
+H : A -> B
+H0 : B <-> C
+H1 : B
+______________________________________(1/2)
+C -> B
+______________________________________(2/2)
+B -> C
+
+```
+
+Podemos também "quebrar" a hipótese $$H0$$ em duas implicações:
+
+```coq
+Lemma sex_teste (H: B <-> C): C <-> B.
+Proof.
+  intro_bicondicional.
+  elim_bicondicional H.
+
+Admitted.
+```
+
+E o resultado fica:
+
+```coq
+2 subgoals
+H : B <-> C
+H0 : B -> C
+H1 : C -> B
+______________________________________(1/2)
+C -> B
+______________________________________(2/2)
+B -> C
+
+```
+
+Agora, temos de provar duas premissas: $$B \implies C$$ a partir de $$B \implies C$$, e $$C \implies B$$ a partir de $$C \implies B$$ !!!Neste caso, basta utilizar a identidade para ambas as implicações. Da forma:
+
+```coq
+Lemma sex_teste (H: B <-> C): C <-> B.
+Proof.
+  intro_bicondicional.
+  elim_bicondicional H.
+  id H1.
+  elim_bicondicional H.
+  id H0.
+Admitted.
+```
+
+No caso, a segunda chamada à função de eliminação da bi-implicação se deve ao fato de que o coqIDE desfaz das variáveis criadas anteriormente ao chamar o método de identidade. Para contornar isto, basta quebrar a hipótese $$H$$ em duas novamente. O resultado final é da forma:
+
+```coq
+No more subgoals.
+```
 
 ## Regras de inferência para a Disjunção: introdução e eliminação do $$\lor$$.
 

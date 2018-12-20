@@ -578,6 +578,80 @@
 
 <h2 id="regras-de-inferência-para-a-bi-implicação-introdução-e-eliminação-do-iff">Regras de inferência para a Bi-implicação: introdução e eliminação do <script type="math/tex">\iff</script>.</h2>
 
+<p>As regras da bi-implicação ou bi-condicional serão simbolizadas por <script type="math/tex">\iff</script>, de forma que, <script type="math/tex">A \iff B</script> é equivalente a <script type="math/tex">A \implies B \land B \implies A</script>. Ou seja, ambos os lados da premissa são verdadeiros, <script type="math/tex">A</script> ou <script type="math/tex">B</script> forem verdadeiros, e ambos são falsos caso <script type="math/tex">A</script> ou <script type="math/tex">B</script> sejam falsos. Considere o exemplo de prova a seguir:</p>
+
+<script type="math/tex; mode=display">\dfrac{B \iff C}{C \iff B}</script>
+
+<p>Veja como fica este exemplo no CoqIDE:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">sex_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">C</span><span class="o">):</span><span class="w"> </span><span class="no">C</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">B</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Neste exemplo, a priori, possuímos uma hipótese <script type="math/tex">H</script> contendo os valor <script type="math/tex">B \iff C</script>. Queremos provar a partir destas, o resultado <script type="math/tex">C \iff B</script>. Podemos utilizar o comando de introdução da bi-implicação, para separa-lá em duas implicações. Veja:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">sex_teste</span><span class="w"> </span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">C</span><span class="o">):</span><span class="w"> </span><span class="no">C</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">B</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_bicondicional</span><span class="pi">.</span><span class="w">
+  
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Que gera:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">2</span><span class="w"> </span><span class="no">subgoals</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span><span class="w">
+</span><span class="no">C</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span><span class="w">
+</span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>Podemos também “quebrar” a hipótese <script type="math/tex">H0</script> em duas implicações:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">sex_teste</span><span class="w"> </span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">C</span><span class="o">):</span><span class="w"> </span><span class="no">C</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">B</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_bicondicional</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_bicondicional</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
+
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>E o resultado fica:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">2</span><span class="w"> </span><span class="no">subgoals</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">C</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span><span class="w">
+</span><span class="no">C</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span><span class="w">
+</span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>Agora, temos de provar duas premissas: <script type="math/tex">B \implies C</script> a partir de <script type="math/tex">B \implies C</script>, e <script type="math/tex">C \implies B</script> a partir de <script type="math/tex">C \implies B</script> !!!Neste caso, basta utilizar a identidade para ambas as implicações. Da forma:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">sex_teste</span><span class="w"> </span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">C</span><span class="o">):</span><span class="w"> </span><span class="no">C</span><span class="w"> </span><span class="o">&lt;-&gt;</span><span class="w"> </span><span class="no">B</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_bicondicional</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_bicondicional</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
+  </span><span class="no">id</span><span class="w"> </span><span class="no">H1</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_bicondicional</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
+  </span><span class="no">id</span><span class="w"> </span><span class="no">H0</span><span class="pi">.</span><span class="w">
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>No caso, a segunda chamada à função de eliminação da bi-implicação se deve ao fato de que o coqIDE desfaz das variáveis criadas anteriormente ao chamar o método de identidade. Para contornar isto, basta quebrar a hipótese <script type="math/tex">H</script> em duas novamente. O resultado final é da forma:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">No</span><span class="w"> </span><span class="no">more</span><span class="w"> </span><span class="no">subgoals</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
 <h2 id="regras-de-inferência-para-a-disjunção-introdução-e-eliminação-do-lor">Regras de inferência para a Disjunção: introdução e eliminação do <script type="math/tex">\lor</script>.</h2>
 
 <h2 id="regras-de-inferência-para-a-contradição">Regras de inferência para a Contradição.</h2>
