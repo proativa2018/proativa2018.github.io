@@ -209,12 +209,12 @@ A regra de eliminação da implicação, também conhecida como $$\textit{Modus 
 
 Suponha a seguinte proposição:
 
-$$\dfrac{(A \implies B) \land (B \implies C}{A \implies C} \tiny{\implies E}$$
+$$\dfrac{(A \implies B) \land (B \implies C)}{A \implies C} \tiny{\implies E}$$
 
 O primeiro passo para "dividir" a conclusão da prova, é utilizar a introdução da implicação:
 
 ```coq
-	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
 Proof.
   intro_implicacao.
 ```
@@ -222,7 +222,7 @@ Proof.
 O resultado do uso da função de introdução da implicação na conclusão nos dá o seguinte resultado:
 
 ```coq
-	1 subgoal
+1 subgoal
 H : A -> B
 H1 : B -> C
 H0 : A
@@ -234,7 +234,7 @@ C
 Logo, uma nova hipótese $$H0$$ contendo o valor $$A$$ é criada pelo Coq. O próximo passo é fazer uma prova "intermediária" para $$B$$ utilizando o comando ```assert``` da forma:
 
 ```coq
-	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
 Proof.
   intro_implicacao.
   assert B.
@@ -243,7 +243,7 @@ Proof.
 A partir da hipótese $$H$$ contendo o valor $$A \implies B$$ e da hipótese $$H0$$ contendo o valor $$A$$, podemos inferir que $$A \implies B$$ é verdade utilizando o comando ```elim_implicacao H H0```. Veja a sequência para o exemplo:
 
 ```coq
-	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
 Proof.
   intro_implicacao.
   assert B.
@@ -251,7 +251,7 @@ Proof.
 ```
 
 ```coq
-	H : A -> B
+H : A -> B
 H1 : B -> C
 H0 : A
 H2 : B
@@ -264,7 +264,7 @@ C
 Para provarmos $$B$$ a partir de $$B$$, utilizamos o comando ```id H2```.
 
 ```coq
-	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
 Proof.
   intro_implicacao.
   assert B.
@@ -275,7 +275,7 @@ Proof.
 E o resultado:
 
 ```coq
-	1 subgoal
+1 subgoal
 H : A -> B
 H1 : B -> C
 H0 : A
@@ -287,7 +287,7 @@ C
 Logo, com o novo conjunto de hipóteses adquirido, conseguimos provar $$C$$ com certa facilidade. Basta utilizar o mesmo comando utilizado anteriormente para eliminação da implicação. O exemplo fica da forma:
 
 ```coq
-	Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
 Proof.
   intro_implicacao.
   assert B.
@@ -303,3 +303,76 @@ E o resultado:
 ```coq
 	No more subgoals.
 ```
+
+## Regras de inferência para a negação
+
+As regras para negação equivalem a duas regras de substituições válidas na lógica formal:
+	"se $$P$$ é verdadeira, então $$¬¬P$$ também é verdadeira", e
+	"se $$¬¬P$$ é verdadeira, então $$P$$ também é verdadeira".
+
+A introdução da negação apresenta a forma:
+
+$$\dfrac{P}{¬¬P} \tiny{{¬I}}$$
+
+E a eliminação da negação apresenta a forma:
+
+$$\dfrac{¬¬P}{P} \tiny{{¬E}}$$
+
+Faremos agora um exemplo utilizando os comandos ```elim_negacao``` e ```intro_negacao```, implementados no CoqIDE para provarmos algumas sentenças lógicas. Seja:
+
+$$\dfrac{¬A \implies A}{¬A \implies A \implies False}$$
+
+Dentro do CoqIDE, a proposição seria da forma:
+
+```coq
+Lemma quar_teste(H: ~A -> A) : ~A -> A -> False.
+Proof.
+  
+Admitted.
+```
+
+O primeiro passo para provarmos o exemplo acima é utilizar a introdução da implicação para "separarmos" a conclusão em novas hipóteses.
+
+```coq
+Lemma quar_teste(H: ~A -> A) : ~A -> A -> False.
+Proof.
+  intro_implicacao.
+  intro_implicacao.
+Admitted.
+```
+
+O resultado é: 
+
+```coq
+1 subgoal
+H : ~ A -> A
+H0 : ~ A
+H1 : A
+______________________________________(1/1)
+False
+```
+
+Veja que agora possuimos duas hipóteses "contraditórias", $$H0$$ contendo o valor $$¬A$$ e $$H1$$ contendo o valor $$A$$. Neste caso, utilizamos o comando de eliminação da negação entre estas duas hipóteses, e portanto nos retornando o valor falso. Veja o exemplo:
+
+```coq
+Lemma quar_teste(H: ~A -> A) : ~A -> A -> False.
+Proof.
+  intro_implicacao.
+  intro_implicacao.
+  elim_negacao H0 H1.
+Admitted.
+```
+
+E o resultado:
+
+```coq
+1 subgoal
+H : ~ A -> A
+H0 : ~ A
+H1 : A
+H2 : False
+______________________________________(1/1)
+False
+```
+
+A partir deste ponto, basta utilizar a identidade na hipótese $$H2$$ para finalizar a prova:
