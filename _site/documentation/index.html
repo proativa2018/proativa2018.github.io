@@ -64,26 +64,84 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
-    <p>nome_projeto é uma ferramenta criada para axuiliar professores e alunos no apredizado de lógica proposicional.</p>
+    <p>Ed is a Jekyll theme designed for textual editors based on minimal computing principles, and focused on legibility and flexibility.</p>
   </div>
 
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item" href="//">Home</a>
-          <a class="sidebar-nav-item" href="//about/">Sobre</a>
-          <a class="sidebar-nav-item" href="//credits/">Credits</a>
 
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="//about/">Sobre</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="//credits/">Créditos</a>
+        
+      
+    
+      
+        
           <a class="sidebar-nav-item active" href="//documentation/">Lógica Proposicional</a>
-        </nav>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="//search/">Search</a>
+        
+      
+    
+
+    <!-- The code below is used for manually entered links  -->
+
+    <span style='cursor:pointer;' onclick="javascript:var hypothesis = document.createElement('script');
+      hypothesis.setAttribute('src','https://hypothes.is/embed.js');
+      document.head.appendChild(hypothesis);"><a class="sidebar-nav-item">Annotate me</a></span>
+
+<!--     <a class="sidebar-nav-item" href="https://via.hypothes.is/http://localhost:4000//documentation//" data-proofer-ignore>Annotate me</a> -->
+<!--  -->
+    <!-- <script src="https://hypothes.is/embed.js" async></script> -->
+
+    <a class="sidebar-nav-item" href="https://github.com/minicomp/ed" target="_blank">GitHub project</a>
+  </nav>
+
   <div class="sidebar-item">
     <p>Currently v1.0 Distributed with an MIT license.</p>
   </div>
 </div>
+
+    
+
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the content to avoid any CSS collisions with our real content. -->
     <div class="wrap">
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="//" title="Home">nome_projeto</a>
-            <br><small>uma ferramenta de ensino de lógica.</small>
+            <a href="//" title="Home">Ed.</a>
+            <br><small>a jekyll theme for minimal editions</small>
           </h3>
         </div>
       </div>
@@ -103,9 +161,13 @@
   <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a></li>
   <li><a href="#pré-requisitos" id="markdown-toc-pré-requisitos">Pré-requisitos</a></li>
   <li><a href="#utilizando-o-coqide" id="markdown-toc-utilizando-o-coqide">Utilizando o CoqIDE</a></li>
-  <li><a href="#regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land" id="markdown-toc-regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land">Regras de Inferência para Conjunção: Introdução e Eliminação do <script type="math/tex">\land</script></a></li>
-  <li><a href="#regras-de-inferência-para-implicação" id="markdown-toc-regras-de-inferência-para-implicação">Regras de inferência para implicação</a></li>
-  <li><a href="#regras-de-inferência-para-a-negação" id="markdown-toc-regras-de-inferência-para-a-negação">Regras de inferência para a negação</a></li>
+  <li><a href="#regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land" id="markdown-toc-regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land">Regras de Inferência para Conjunção: Introdução e Eliminação do <script type="math/tex">\land</script>.</a></li>
+  <li><a href="#regras-de-inferência-para-implicação-introdução-e-eliminação-do-implies" id="markdown-toc-regras-de-inferência-para-implicação-introdução-e-eliminação-do-implies">Regras de inferência para Implicação: introdução e eliminação do <script type="math/tex">\implies</script>.</a></li>
+  <li><a href="#regras-de-inferência-para-a-negação-introdução-e-negação-do-neg" id="markdown-toc-regras-de-inferência-para-a-negação-introdução-e-negação-do-neg">Regras de inferência para a Negação: introdução e negação do <script type="math/tex">\neg</script>.</a></li>
+  <li><a href="#regras-de-inferência-para-a-bi-implicação-introdução-e-eliminação-do-iff" id="markdown-toc-regras-de-inferência-para-a-bi-implicação-introdução-e-eliminação-do-iff">Regras de inferência para a Bi-implicação: introdução e eliminação do <script type="math/tex">\iff</script>.</a></li>
+  <li><a href="#regras-de-inferência-para-a-disjunção-introdução-e-eliminação-do-lor" id="markdown-toc-regras-de-inferência-para-a-disjunção-introdução-e-eliminação-do-lor">Regras de inferência para a Disjunção: introdução e eliminação do <script type="math/tex">\lor</script>.</a></li>
+  <li><a href="#regras-de-inferência-para-a-contradição" id="markdown-toc-regras-de-inferência-para-a-contradição">Regras de inferência para a Contradição.</a></li>
+  <li><a href="#regras-de-inferência-para-a-redução-ao-absurdo" id="markdown-toc-regras-de-inferência-para-a-redução-ao-absurdo">Regras de inferência para a Redução ao Absurdo.</a></li>
 </ul>
 
 <hr />
@@ -179,7 +241,7 @@
 	</span><span class="k">Qed</span><span class="pi">.</span><span class="w">
 </span></code></pre></div></div>
 
-<h2 id="regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land">Regras de Inferência para Conjunção: Introdução e Eliminação do <script type="math/tex">\land</script></h2>
+<h2 id="regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land">Regras de Inferência para Conjunção: Introdução e Eliminação do <script type="math/tex">\land</script>.</h2>
 
 <p>A regra da introdução da conjunção, simbolizada por {<script type="math/tex">\land I</script>}, diz que dada duas premissas verdadeiras, pode concluir-se a conjunção dessas premissas, dada por <script type="math/tex">P \land Q</script> ou <script type="math/tex">Q \land P</script>. Escreve-se da forma:</p>
 
@@ -279,7 +341,7 @@
 <div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="no">No</span><span class="w"> </span><span class="no">more</span><span class="w"> </span><span class="no">subgoals</span><span class="pi">.</span><span class="w">
 </span></code></pre></div></div>
 
-<h2 id="regras-de-inferência-para-implicação">Regras de inferência para implicação</h2>
+<h2 id="regras-de-inferência-para-implicação-introdução-e-eliminação-do-implies">Regras de inferência para Implicação: introdução e eliminação do <script type="math/tex">\implies</script>.</h2>
 
 <p>A regra de eliminação da implicação, também conhecida como <script type="math/tex">\textit{Modus Ponens}</script>, consiste na resolução de implicações lógicas. Veremos como resolve-lás com o Coq, através de um exemplo.</p>
 
@@ -371,7 +433,7 @@
 <div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="no">No</span><span class="w"> </span><span class="no">more</span><span class="w"> </span><span class="no">subgoals</span><span class="pi">.</span><span class="w">
 </span></code></pre></div></div>
 
-<h2 id="regras-de-inferência-para-a-negação">Regras de inferência para a negação</h2>
+<h2 id="regras-de-inferência-para-a-negação-introdução-e-negação-do-neg">Regras de inferência para a Negação: introdução e negação do <script type="math/tex">\neg</script>.</h2>
 
 <p>As regras para negação equivalem a duas regras de substituições válidas na lógica formal:
 	“se <script type="math/tex">P</script> é verdadeira, então <script type="math/tex">¬¬P</script> também é verdadeira”, e
@@ -379,11 +441,11 @@
 
 <p>A introdução da negação apresenta a forma:</p>
 
-<script type="math/tex; mode=display">\dfrac{P}{¬¬P} \tiny</script>
+<script type="math/tex; mode=display">\dfrac{P}{¬¬P} \tiny{\neg I}</script>
 
 <p>E a eliminação da negação apresenta a forma:</p>
 
-<script type="math/tex; mode=display">\dfrac{¬¬P}{P} \tiny</script>
+<script type="math/tex; mode=display">\dfrac{¬¬P}{P} \tiny{\neg E}</script>
 
 <p>Faremos agora um exemplo utilizando os comandos <code class="highlighter-rouge">elim_negacao</code> e <code class="highlighter-rouge">intro_negacao</code>, implementados no CoqIDE para provarmos algumas sentenças lógicas. Seja:</p>
 
@@ -513,6 +575,14 @@
 
 <div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">No</span><span class="w"> </span><span class="no">more</span><span class="w"> </span><span class="no">subgoals</span><span class="pi">.</span><span class="w">
 </span></code></pre></div></div>
+
+<h2 id="regras-de-inferência-para-a-bi-implicação-introdução-e-eliminação-do-iff">Regras de inferência para a Bi-implicação: introdução e eliminação do <script type="math/tex">\iff</script>.</h2>
+
+<h2 id="regras-de-inferência-para-a-disjunção-introdução-e-eliminação-do-lor">Regras de inferência para a Disjunção: introdução e eliminação do <script type="math/tex">\lor</script>.</h2>
+
+<h2 id="regras-de-inferência-para-a-contradição">Regras de inferência para a Contradição.</h2>
+
+<h2 id="regras-de-inferência-para-a-redução-ao-absurdo">Regras de inferência para a Redução ao Absurdo.</h2>
 
 </div>
 

@@ -312,11 +312,11 @@ As regras para negação equivalem a duas regras de substituições válidas na 
 
 A introdução da negação apresenta a forma:
 
-$$\dfrac{P}{¬¬P} \tiny{{¬I}}$$
+$$\dfrac{P}{¬¬P} \tiny{\neg I}$$
 
 E a eliminação da negação apresenta a forma:
 
-$$\dfrac{¬¬P}{P} \tiny{{¬E}}$$
+$$\dfrac{¬¬P}{P} \tiny{\neg E}$$
 
 Faremos agora um exemplo utilizando os comandos ```elim_negacao``` e ```intro_negacao```, implementados no CoqIDE para provarmos algumas sentenças lógicas. Seja:
 
