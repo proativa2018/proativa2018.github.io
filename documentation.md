@@ -375,4 +375,87 @@ ______________________________________(1/1)
 False
 ```
 
-A partir deste ponto, basta utilizar a identidade na hipótese $$H2$$ para finalizar a prova:
+A partir deste ponto, basta utilizar a identidade na hipótese $$H2$$ para finalizar a prova.
+
+Veja um outro exemplo utilizando os comandos para eliminação e introdução da negação. Seja:
+
+$$\dfrac{A \implies ¬A}{¬A}$$
+
+Veja que agora a negação está tanto na conclusão como nas hipóteses da nossa prova. Para começar a nossa prova, primeiro vamos utilizar o comando de introdução da negação na conclusão da nossa prova. Daí:
+
+```coq
+Lemma qui_teste(H: A -> ~A) : ~A.
+Proof.
+  intro_negacao.
+Admitted.
+```
+
+È o resultado:
+
+```coq
+1 subgoal
+H : A -> ~ A
+H0 : A
+______________________________________(1/1)
+False
+```
+
+Agora, como temos as hipóteses $$H0$$ e $$H$$ contendo os valores $$A$$ e $$A \implies ¬A$$, podemos utilizar o comando de eliminação da implicação para estas duas hipóteses. Então:
+
+```coq
+Lemma qui_teste(H: A -> ~A) : ~A.
+Proof.
+  intro_negacao.
+  elim_implicacao H H0.
+Admitted.
+```
+
+O que resulta em:
+
+```coq
+1 subgoal
+H : A -> ~ A
+H0 : A
+H1 : ~ A
+______________________________________(1/1)
+False
+```
+
+Novamente, neste ponto, possuímos duas hipóteses contraditórias $$A$$ e $$¬A$$, então utiliza-se o comando de eliminação da negação entre as hipóteses $$H0$$ e $$H1$$. Assim sendo:
+
+```coq
+Lemma qui_teste(H: A -> ~A) : ~A.
+Proof.
+  intro_negacao.
+  elim_implicacao H H0.
+  elim_negacao H1 H0.
+Admitted.
+```
+
+Que gera o resultado:
+
+```coq
+1 subgoal
+H : A -> ~ A
+H0 : A
+H1 : ~ A
+H2 : False
+______________________________________(1/1)
+False
+```
+
+Para terminar a prova bastar utilizar o comando de identidade para a hipótese $$H2$$ e prova está completa:
+
+```coq
+Lemma qui_teste(H: A -> ~A) : ~A.
+Proof.
+  intro_negacao.
+  elim_implicacao H H0.
+  elim_negacao H1 H0.
+  id H2.
+Admitted.
+```
+
+```coq
+No more subgoals.
+```
