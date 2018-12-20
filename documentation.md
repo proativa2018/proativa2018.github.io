@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Documentation
+title: Lógica Proposicional
 author: Alex Gil
 ---
 

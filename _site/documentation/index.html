@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
 
   <!--   Dublin Core metadata for Zotero -->  
-  <meta name="DC.title" content="Documentation" />
+  <meta name="DC.title" content="Lógica Proposicional" />
   <meta name="DC.creator" content="Alex Gil" />
   <meta name="DC.contributor" content="" />
   <meta name="DC.date" content="" />
@@ -23,7 +23,7 @@
     <!-- Open Graph metadata -->
 
     
-    <meta property="og:title" content="Documentation"/>
+    <meta property="og:title" content="Lógica Proposicional"/>
     <meta property="og:description" content="An Ed edition">
     <meta property="fb:admins" content="elotroalex"/>
     <meta property="og:type" content="article" />
@@ -36,7 +36,7 @@
    
   <title>
     
-      Documentation
+      Lógica Proposicional
     
   </title>
 
@@ -84,7 +84,7 @@
     
       
         
-          <a class="sidebar-nav-item" href="//about/">About</a>
+          <a class="sidebar-nav-item" href="//about/">Sobre</a>
         
       
     
@@ -102,7 +102,7 @@
     
       
         
-          <a class="sidebar-nav-item active" href="//documentation/">Documentation</a>
+          <a class="sidebar-nav-item active" href="//documentation/">Lógica Proposicional</a>
         
       
     
@@ -148,7 +148,7 @@
 
       <div class="container content" id="main">
         <div class="page">
-  <h1 class="page-title">Documentation</h1>
+  <h1 class="page-title">Lógica Proposicional</h1>
   <head>
 	<script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
@@ -163,6 +163,7 @@
   <li><a href="#utilizando-o-coqide" id="markdown-toc-utilizando-o-coqide">Utilizando o CoqIDE</a></li>
   <li><a href="#regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land" id="markdown-toc-regras-de-inferência-para-conjunção-introdução-e-eliminação-do-land">Regras de Inferência para Conjunção: Introdução e Eliminação do <script type="math/tex">\land</script></a></li>
   <li><a href="#regras-de-inferência-para-implicação" id="markdown-toc-regras-de-inferência-para-implicação">Regras de inferência para implicação</a></li>
+  <li><a href="#regras-de-inferência-para-a-negação" id="markdown-toc-regras-de-inferência-para-a-negação">Regras de inferência para a negação</a></li>
 </ul>
 
 <hr />
@@ -226,7 +227,7 @@
 
 <p>Veja o seguinte exemplo de prova formal:</p>
 
-<script type="math/tex; mode=display">(P \land Q)\:\:\:T</script>
+<script type="math/tex; mode=display">P \land Q \land T</script>
 
 <p>Esta estrutura de prova, no CoqIDE, corresponde ao seguinte trecho de código:</p>
 
@@ -337,6 +338,239 @@
 </span></code></pre></div></div>
 
 <h2 id="regras-de-inferência-para-implicação">Regras de inferência para implicação</h2>
+
+<p>A regra de eliminação da implicação, também conhecida como <script type="math/tex">\textit{Modus Ponens}</script>, consiste na resolução de implicações lógicas. Veremos como resolve-lás com o Coq, através de um exemplo.</p>
+
+<p>Suponha a seguinte proposição:</p>
+
+<script type="math/tex; mode=display">\dfrac{(A \implies B) \land (B \implies C)}{A \implies C} \tiny{\implies E}</script>
+
+<p>O primeiro passo para “dividir” a conclusão da prova, é utilizar a introdução da implicação:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">tri_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">H1</span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_implicacao</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>O resultado do uso da função de introdução da implicação na conclusão nos dá o seguinte resultado:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="w"> </span><span class="no">subgoal</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">)</span><span class="w">
+</span><span class="no">C</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>Logo, uma nova hipótese <script type="math/tex">H0</script> contendo o valor <script type="math/tex">A</script> é criada pelo Coq. O próximo passo é fazer uma prova “intermediária” para <script type="math/tex">B</script> utilizando o comando <code class="highlighter-rouge">assert</code> da forma:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">tri_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">H1</span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_implicacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">assert</span><span class="w"> </span><span class="no">B</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>A partir da hipótese <script type="math/tex">H</script> contendo o valor <script type="math/tex">A \implies B</script> e da hipótese <script type="math/tex">H0</script> contendo o valor <script type="math/tex">A</script>, podemos inferir que <script type="math/tex">A \implies B</script> é verdade utilizando o comando <code class="highlighter-rouge">elim_implicacao H H0</code>. Veja a sequência para o exemplo:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">tri_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">H1</span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_implicacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">assert</span><span class="w"> </span><span class="no">B</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_implicacao</span><span class="w"> </span><span class="no">H</span><span class="w"> </span><span class="no">H0</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H2</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span><span class="w">
+</span><span class="no">B</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span><span class="w">
+</span><span class="no">C</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Para provarmos <script type="math/tex">B</script> a partir de <script type="math/tex">B</script>, utilizamos o comando <code class="highlighter-rouge">id H2</code>.</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">tri_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">H1</span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_implicacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">assert</span><span class="w"> </span><span class="no">B</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_implicacao</span><span class="w"> </span><span class="no">H</span><span class="w"> </span><span class="no">H0</span><span class="pi">.</span><span class="w">
+  </span><span class="no">id</span><span class="w"> </span><span class="no">H2</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>E o resultado:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="w"> </span><span class="no">subgoal</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H2</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">)</span><span class="w">
+</span><span class="no">C</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Logo, com o novo conjunto de hipóteses adquirido, conseguimos provar <script type="math/tex">C</script> com certa facilidade. Basta utilizar o mesmo comando utilizado anteriormente para eliminação da implicação. O exemplo fica da forma:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">tri_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">B</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">H1</span><span class="p">:</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">C</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_implicacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">assert</span><span class="w"> </span><span class="no">B</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_implicacao</span><span class="w"> </span><span class="no">H</span><span class="w"> </span><span class="no">H0</span><span class="pi">.</span><span class="w">
+  </span><span class="no">id</span><span class="w"> </span><span class="no">H2</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_implicacao</span><span class="w"> </span><span class="no">H1</span><span class="w"> </span><span class="no">H2</span><span class="pi">.</span><span class="w">
+  </span><span class="no">id</span><span class="w"> </span><span class="no">H3</span><span class="pi">.</span><span class="w">
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>E o resultado:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">	</span><span class="no">No</span><span class="w"> </span><span class="no">more</span><span class="w"> </span><span class="no">subgoals</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="regras-de-inferência-para-a-negação">Regras de inferência para a negação</h2>
+
+<p>As regras para negação equivalem a duas regras de substituições válidas na lógica formal:
+	“se <script type="math/tex">P</script> é verdadeira, então <script type="math/tex">¬¬P</script> também é verdadeira”, e
+	“se <script type="math/tex">¬¬P</script> é verdadeira, então <script type="math/tex">P</script> também é verdadeira”.</p>
+
+<p>A introdução da negação apresenta a forma:</p>
+
+<script type="math/tex; mode=display">\dfrac{P}{¬¬P} \tiny</script>
+
+<p>E a eliminação da negação apresenta a forma:</p>
+
+<script type="math/tex; mode=display">\dfrac{¬¬P}{P} \tiny</script>
+
+<p>Faremos agora um exemplo utilizando os comandos <code class="highlighter-rouge">elim_negacao</code> e <code class="highlighter-rouge">intro_negacao</code>, implementados no CoqIDE para provarmos algumas sentenças lógicas. Seja:</p>
+
+<script type="math/tex; mode=display">\dfrac{¬A \implies A}{¬A \implies A \implies False}</script>
+
+<p>Dentro do CoqIDE, a proposição seria da forma:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">quar_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">A</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">False</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>O primeiro passo para provarmos o exemplo acima é utilizar a introdução da implicação para “separarmos” a conclusão em novas hipóteses.</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">quar_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">A</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">False</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_implicacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_implicacao</span><span class="pi">.</span><span class="w">
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>O resultado é:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="w"> </span><span class="no">subgoal</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">)</span><span class="w">
+</span><span class="no">False</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Veja que agora possuimos duas hipóteses “contraditórias”, <script type="math/tex">H0</script> contendo o valor <script type="math/tex">¬A</script> e <script type="math/tex">H1</script> contendo o valor <script type="math/tex">A</script>. Neste caso, utilizamos o comando de eliminação da negação entre estas duas hipóteses, e portanto nos retornando o valor falso. Veja o exemplo:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">quar_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">A</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">False</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_implicacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_implicacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_negacao</span><span class="w"> </span><span class="no">H0</span><span class="w"> </span><span class="no">H1</span><span class="pi">.</span><span class="w">
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>E o resultado:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="w"> </span><span class="no">subgoal</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H2</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">False</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">)</span><span class="w">
+</span><span class="no">False</span><span class="w">
+</span></code></pre></div></div>
+
+<p>A partir deste ponto, basta utilizar a identidade na hipótese <script type="math/tex">H2</script> para finalizar a prova.</p>
+
+<p>Veja um outro exemplo utilizando os comandos para eliminação e introdução da negação. Seja:</p>
+
+<script type="math/tex; mode=display">\dfrac{A \implies ¬A}{¬A}</script>
+
+<p>Veja que agora a negação está tanto na conclusão como nas hipóteses da nossa prova. Para começar a nossa prova, primeiro vamos utilizar o comando de introdução da negação na conclusão da nossa prova. Daí:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">qui_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_negacao</span><span class="pi">.</span><span class="w">
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>È o resultado:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="w"> </span><span class="no">subgoal</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">)</span><span class="w">
+</span><span class="no">False</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Agora, como temos as hipóteses <script type="math/tex">H0</script> e <script type="math/tex">H</script> contendo os valores <script type="math/tex">A</script> e <script type="math/tex">A \implies ¬A</script>, podemos utilizar o comando de eliminação da implicação para estas duas hipóteses. Então:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">qui_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_negacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_implicacao</span><span class="w"> </span><span class="no">H</span><span class="w"> </span><span class="no">H0</span><span class="pi">.</span><span class="w">
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>O que resulta em:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="w"> </span><span class="no">subgoal</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">)</span><span class="w">
+</span><span class="no">False</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Novamente, neste ponto, possuímos duas hipóteses contraditórias <script type="math/tex">A</script> e <script type="math/tex">¬A</script>, então utiliza-se o comando de eliminação da negação entre as hipóteses <script type="math/tex">H0</script> e <script type="math/tex">H1</script>. Assim sendo:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">qui_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_negacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_implicacao</span><span class="w"> </span><span class="no">H</span><span class="w"> </span><span class="no">H0</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_negacao</span><span class="w"> </span><span class="no">H1</span><span class="w"> </span><span class="no">H0</span><span class="pi">.</span><span class="w">
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Que gera o resultado:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="w"> </span><span class="no">subgoal</span><span class="w">
+</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="no">A</span><span class="w">
+</span><span class="no">H2</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">False</span><span class="w">
+</span><span class="no">______________________________________</span><span class="o">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="o">)</span><span class="w">
+</span><span class="no">False</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Para terminar a prova bastar utilizar o comando de identidade para a hipótese <script type="math/tex">H2</script> e prova está completa:</p>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">qui_teste</span><span class="o">(</span><span class="no">H</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">~</span><span class="no">A</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">intro_negacao</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_implicacao</span><span class="w"> </span><span class="no">H</span><span class="w"> </span><span class="no">H0</span><span class="pi">.</span><span class="w">
+  </span><span class="no">elim_negacao</span><span class="w"> </span><span class="no">H1</span><span class="w"> </span><span class="no">H0</span><span class="pi">.</span><span class="w">
+  </span><span class="no">id</span><span class="w"> </span><span class="no">H2</span><span class="pi">.</span><span class="w">
+</span><span class="no">Admitted</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">No</span><span class="w"> </span><span class="no">more</span><span class="w"> </span><span class="no">subgoals</span><span class="pi">.</span><span class="w">
+</span></code></pre></div></div>
 
 </div>
 
