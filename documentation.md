@@ -94,7 +94,7 @@ Esta estrutura de prova, no CoqIDE, corresponde ao seguinte trecho de código:
 	Qed.
 ```
 
-## Regras de Inferência para Conjunção: Introdução e Eliminação do $$\land$$
+## Regras de Inferência para Conjunção: Introdução e Eliminação do $$\land$$.
 
 A regra da introdução da conjunção, simbolizada por {$$\land I$$}, diz que dada duas premissas verdadeiras, pode concluir-se a conjunção dessas premissas, dada por $$P \land Q $$ ou $$Q \land P$$. Escreve-se da forma:
 
@@ -203,7 +203,7 @@ Perceba que quando utilizamos o comando ```elim_e H1```, duas novas variáveis d
 	No more subgoals.
 ```
 
-## Regras de inferência para implicação
+## Regras de inferência para Implicação: introdução e eliminação do $$\implies$$.
 
 A regra de eliminação da implicação, também conhecida como $$\textit{Modus Ponens}$$, consiste na resolução de implicações lógicas. Veremos como resolve-lás com o Coq, através de um exemplo. 
 
@@ -304,7 +304,7 @@ E o resultado:
 	No more subgoals.
 ```
 
-## Regras de inferência para a negação
+## Regras de inferência para a Negação: introdução e negação do $$\neg$$.
 
 As regras para negação equivalem a duas regras de substituições válidas na lógica formal:
 	"se $$P$$ é verdadeira, então $$¬¬P$$ também é verdadeira", e
@@ -459,3 +459,14 @@ Admitted.
 ```coq
 No more subgoals.
 ```
+
+## Regras de inferência para a Bi-implicação: introdução e eliminação do $$\iff$$.
+
+
+## Regras de inferência para a Disjunção: introdução e eliminação do $$\lor$$.
+
+
+## Regras de inferência para a Contradição.
+
+
+## Regras de inferência para a Redução ao Absurdo.
