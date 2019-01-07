@@ -547,9 +547,9 @@ No more subgoals.
 
 As regras de introdução da disjunção, em nossa biblioteca do CoqIDE, possui duas formas: a eliminação da disjunção mantendo a hipótese da direita; e a eliminação da disjunção mantendo a hipótese da esquerda. Estas regras são implementadas como ```intro_ou_dir``` e ```intro_ou_esq```, respectivamente. 
 
-Para a proposição do tipo $$A \/ B$$ podemos manter ou a hipótese $$A$$ ou a hipótese $$B$$. Caso utilizemos o comando ```intro_ou_dir``` a hipótese que será mantida é $$B$$, e caso contrário a hipótese mantida pelo comando é $$A$$. Veja um exemplo completo:
+Para a proposição do tipo $$A \lor B$$ podemos manter ou a hipótese $$A$$ ou a hipótese $$B$$. Caso utilizemos o comando ```intro_ou_dir``` a hipótese que será mantida é $$B$$, e caso contrário a hipótese mantida pelo comando é $$A$$. Veja um exemplo completo:
 
-$$\dfrac{(A \implies B) \lands A \land (A \implies C)}{A \lor B \lor C}$$
+$$\dfrac{(A \implies B) \land A \land (A \implies C)}{A \lor B \lor C}$$
 
 Em coq, a premissa acima equivale a:
 
