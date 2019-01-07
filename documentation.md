@@ -548,5 +548,87 @@ No more subgoals.
 
 ## Regras de inferência para a Contradição.
 
+A regra de inferência da crontradição, permite de forma geral, deduzir qualquer fórumla a partir de uma dedução de falso. Como no caso de duas hipóteses $$P$$ e $$¬P$$, que gera $$P \land ¬P$$ o que nos permite deduzir falso. Veremos como fica a premissa no CoqIDE:
+
+Suponha:
+
+$$\dfrac{}{¬A \implies A \implies ¬A}$$
+
+ou
+
+```coq
+Lemma teste6 : ~ A -> A -> ~A.
+Proof.
+ 	
+Qed.
+```
+
+O primeiro passo neste caso é utilizar a eliminação da implicação duas vezes para conseguirmos as hipóteses $$A$$ e $$¬A$$.
+
+```coq
+Lemma teste6 : ~ A -> A -> ~A.
+Proof.
+  intro_implicacao.
+  intro_implicacao.
+Qed.
+```
+
+O resultado dos comandos acima nos dá:
+
+```coq
+1 subgoal
+H : ~ A
+H0 : A
+______________________________________(1/1)
+~ A
+```
+
+O comando ```contradicao``` recebe um parâmetro do tipo ```Prop```, que posteriormente é transformado em falso.
+No caso acima, as hipóteses $$¬A$$ e $$A$$ são contraditórias. Utilizando o comando de eliminação da negação nestas, temos que:
+
+```coq
+Lemma teste6 : ~ A -> A -> ~A.
+Proof.
+  intro_implicacao.
+  intro_implicacao.
+  elim_negacao H H0.
+Qed.
+```
+
+Que gera como resultado:
+
+```coq
+1 subgoal
+H : ~ A
+H0 : A
+H1 : False
+______________________________________(1/1)
+~ A
+```
+
+Agora, para conseguirmos provar a identidade da hipótese $$\textit{False}$$, precisamos utilizar o comando de ```contradição```. O resultado final é:
+
+```coq
+Lemma teste6 : ~ A -> A -> ~A.
+Proof.
+  intro_implicacao.
+  intro_implicacao.
+  elim_negacao H H0.
+  contradicao (~A).
+Qed.
+```
+
+Que gera a saída:
+
+```coq
+1 subgoal
+H : ~ A
+H0 : A
+H1 : False
+______________________________________(1/1)
+False
+```
+
+Para terminar a prova basta utilizar a identidade na hipótese $$H1$$.
 
 ## Regras de inferência para a Redução ao Absurdo.

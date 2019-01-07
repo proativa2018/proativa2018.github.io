@@ -127,9 +127,31 @@ Qed.
 
 Lemma sec_teste (H: A \/ B \/ C) : A \/ B \/ C.
 Proof.
+  elim_ou H.
+  intro_ou_esq.
+  elim_ou H.
+  intro_ou_dir.
+  id H0.
   
-Qed.
+Admitted.
 
+Lemma tri_teste(H: A -> B) (H1: B -> C) : A -> C.
+Proof.
+  intro_implicacao.
+  assert B.
+  elim_implicacao H H0.
+  id H2.
+  elim_implicacao H1 H2.
+  id H3.
+Admitted.
+
+Lemma quar_teste(H: ~A -> A) : ~A -> A -> False.
+Proof.
+  intro_implicacao.
+  intro_implicacao.
+  elim_negacao H0 H1.
+  id H2.
+Admitted.
 
 Lemma teste1 : (A -> B) -> A -> B.
 Proof.
