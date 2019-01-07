@@ -112,7 +112,7 @@ Ltac raa :=
                in apply RAA ; intro Hx
   end.
 
-Variables A B C : Prop.
+Variables A B C D: Prop.
 
 Lemma prim_teste (H: A /\ B /\ C) : A /\ B /\ C.
 Proof.
@@ -151,6 +151,11 @@ Proof.
   intro_implicacao.
   elim_negacao H0 H1.
   id H2.
+Admitted.
+
+Lemma qui_teste (H: A -> B) (H1: A) (H2: A \/ C) : A
+Proof.
+  
 Admitted.
 
 Lemma teste1 : (A -> B) -> A -> B.
@@ -206,12 +211,12 @@ Proof.
   id H1.
 Qed.
 
-Lemma teste6 : ~ A -> A -> False.
+Lemma teste6 : ~ A -> A -> ~A.
 Proof.
   intro_implicacao.
   intro_implicacao.
-  contradicao False.
   elim_negacao H H0.
+  contradicao (~A).
   id H1.
 Qed.
 

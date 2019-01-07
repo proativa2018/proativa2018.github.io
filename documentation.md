@@ -545,7 +545,74 @@ No more subgoals.
 
 ## Regras de inferência para a Disjunção: introdução e eliminação do $$\lor$$.
 
+As regras de introdução da disjunção, em nossa biblioteca do CoqIDE, possui duas formas: a eliminação da disjunção mantendo a hipótese da direita; e a eliminação da disjunção mantendo a hipótese da esquerda. Estas regras são implementadas como ```intro_ou_dir``` e ```intro_ou_esq```, respectivamente. 
 
+Para a proposição do tipo $$A \/ B$$ podemos manter ou a hipótese $$A$$ ou a hipótese $$B$$. Caso utilizemos o comando ```intro_ou_dir``` a hipótese que será mantida é $$B$$, e caso contrário a hipótese mantida pelo comando é $$A$$. Veja um exemplo completo:
+
+$$\dfrac{(A \implies B) \lands A \land (A \implies C)}{A \lor B \lor C}$$
+
+Em coq, a premissa acima equivale a:
+
+```coq
+Lemma qui_teste (H: A -> B) (H1: A) (H2: A -> C): A \/ B \/ C.
+Proof.
+Admitted.
+```
+
+Como visto anteriormente, podemos provar $$B$$ a partir de $$A \implies B$$ e $$A$$ utilizando o comando de eliminação da implicação ou ```elim_implicacao```. Logo após, utilizaremos o comando de eliminação da disjunção à direita da proposição $$A \lor B \lor C$$. Veja:
+
+```coq
+Lemma qui_teste (H: A -> B) (H1: A) (H2: A -> C): A \/ B \/ C.
+Proof.
+  elim_implicacao H H1.
+  intro_ou_dir.
+Admitted.
+```
+
+O resultado é da forma:
+
+```coq
+1 subgoal
+H : A -> B
+H1 : A
+H2 : A -> C
+H0 : B
+______________________________________(1/1)
+B \/ C
+```
+
+Podemos utilizar novamente a eliminação da implicação no resultado, à direita ou à esquerda. Este exemplo possui diversas formas para ser provado: uma delas é utilizar novamente a eliminação da implicação em $$A \implies C$$ e $$A$$ a fim de obter $$C$$, daí caso utilizemos a eliminação da implicação à esquerda, obteríamos $$C$$ e provariamos sua identidade; outra forma é utilizar a eliminação da implicação à direita a fim de obter $$B$$ e provar sua identidade. Ambas as formas estão corretas.
+
+Veja as resolução a seguir:
+
+```coq
+Lemma qui_teste (H: A -> B) (H1: A) (H2: A -> C): A \/ B \/ C.
+Proof.
+  elim_implicacao H H1.
+  intro_ou_dir.
+  elim_implicacao H2 H1.
+  intro_ou_dir.
+  id H3.
+Admitted.
+```
+
+e
+
+```coq
+Lemma qui_teste (H: A -> B) (H1: A) (H2: A -> C): A \/ B \/ C.
+Proof.
+  elim_implicacao H H1.
+  intro_ou_dir.
+  intro_ou_esq.
+  id H0.
+Admitted.
+```
+
+Ambas as resoluções nos dá o resultado:
+
+```coq
+No more subgoals.
+```
 ## Regras de inferência para a Contradição.
 
 A regra de inferência da crontradição, permite de forma geral, deduzir qualquer fórumla a partir de uma dedução de falso. Como no caso de duas hipóteses $$P$$ e $$¬P$$, que gera $$P \land ¬P$$ o que nos permite deduzir falso. Veremos como fica a premissa no CoqIDE:
