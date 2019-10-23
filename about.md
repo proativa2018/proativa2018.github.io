@@ -9,7 +9,7 @@ A página da WEB do projeto é hospedada pelo [GitHub Pages](https://pages.githu
 
 ## Versões.
 
-- [Última versão atualizada] - A versão mais atualizada do "nome_projeto" 
+- [Última versão atualizada] - A versão mais atualizada do Verum
 
 
 ## Principais Recursos
